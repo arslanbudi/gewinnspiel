@@ -21,7 +21,7 @@
             background: #000;
         }
 
-        /* --- BACKGROUND VIDEO --- */
+        /* --- BACKGROUND (VIDEO & IMAGE HYBRID) --- */
         .bg-video {
             position: fixed;
             top: 0;
@@ -31,6 +31,12 @@
             object-fit: cover;
             z-index: -1;
             filter: brightness(0.5); /* Gelapkan agar teks putih terbaca */
+            
+            /* PERBAIKAN: Gambar background dipasang di CSS sebagai cadangan */
+            background-image: url('germany.png'); 
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
         }
 
         /* --- UTAMA (GLASS CARD) --- */
@@ -38,7 +44,7 @@
             background: rgba(0, 0, 0, 0.7);
             backdrop-filter: blur(8px);
             -webkit-backdrop-filter: blur(8px);
-            border: 3px solid #00B270; /* Warna hijau khas referensi */
+            border: 3px solid #00B270;
             border-radius: 15px;
             padding: 30px 20px;
             width: 90%;
@@ -49,9 +55,9 @@
             position: relative;
         }
 
-        /* --- TYPOGRAPHY (SESUAI REFERENSI) --- */
+        /* --- TYPOGRAPHY --- */
         h1 {
-            font-family: 'Impact', 'Arial Narrow', sans-serif; /* Font tebal */
+            font-family: 'Impact', 'Arial Narrow', sans-serif;
             font-size: 2.8rem;
             margin-bottom: 5px;
             text-transform: uppercase;
@@ -92,12 +98,12 @@
             font-weight: bold;
         }
         .timer-count {
-            color: #ff3b3b; /* Merah untuk urgensi */
+            color: #ff3b3b;
             font-family: monospace;
             font-size: 1.5rem;
         }
 
-        /* --- BUTTON STYLE (HIJAU/EMAS) --- */
+        /* --- BUTTON STYLE --- */
         .btn-wrapper {
             position: relative;
             display: inline-block;
@@ -137,7 +143,6 @@
             100% { box-shadow: 0 0 0 0 rgba(0, 178, 112, 0); }
         }
 
-        /* Mobile Adjustments */
         @media (max-width: 600px) {
             h1 { font-size: 2.2rem; }
             .btn-claim { font-size: 1.1rem; }
@@ -146,50 +151,47 @@
 </head>
 <body>
 
-    <!-- 1. BACKGROUND VIDEO (Pastikan file video.mp4 ada) -->
+    <!-- 
+      LOGIKA BACKGROUND:
+      1. CSS sudah di-set background-image: url('germany.png').
+      2. Jika 'video.mp4' GAGAL dimuat (atau tidak ada), background CSS akan terlihat.
+      3. Jika 'video.mp4' BERHASIL dimuat, video akan menimpa gambar.
+    -->
     <video class="bg-video" autoplay loop muted playsinline poster="germany.png">
         <source src="video.mp4" type="video/mp4">
     </video>
 
-    <!-- 2. CONTENT CARD -->
     <div class="main-card">
-        
-        <!-- HEADER TEXT DARI REFERENSI -->
         <h1>--Final Step--</h1>
         <div class="sub-header">VALIDATE NOW</div>
 
-        <!-- GAMBAR GIF LOADING (Optional, biar mirip referensi) -->
+        <!-- Loading GIF -->
         <img src="https://d13pxqgp3ixdbh.cloudfront.net/uploads/161259242059a642d77e59012c30ee37046eda2d60.gif" style="width:40px; margin-bottom: 10px;" alt="loading">
 
-        <!-- TIMER MUNDUR -->
         <div class="timer-box">
             Time Remaining<br>
             <span class="timer-count" id="timer">05:20</span>
         </div>
 
-        <!-- TEKS JERMAN (COPY PASTE DARI REFERENSI) -->
         <p class="description">
             SICHERN SIE SICH JETZT IHRE PRÄMIE UND KLICKEN SIE AUF DIE UNTENSTEHENDE OPTION.
         </p>
 
-        <!-- TOMBOL CLAIM -->
         <div class="btn-wrapper">
             <a href="https://www.effectivegatecpm.com/x64qppz6n?key=6a8a14a8c756569c0b2293a5304722e7" class="btn-claim" target="_blank">
                 SICHERN SIE SICH JETZT IHRE PRÄMIE
             </a>
         </div>
 
-        <!-- TEKS PERINGATAN KECIL -->
         <p class="small-warning">
             Führen Sie die Schritte korrekt aus!!! Stellen Sie sicher, dass Sie alle Anweisungen befolgen, um den Geschenkcode zu erhalten.
         </p>
 
     </div>
 
-    <!-- SCRIPT TIMER (Logika sama persis dengan referensi) -->
+    <!-- SCRIPT TIMER -->
     <script>
-        // Set waktu awal (Menit : Detik)
-        let duration = 5 * 60 + 20; // 5 menit 20 detik
+        let duration = 5 * 60 + 20; 
         const timerDisplay = document.getElementById('timer');
 
         function startTimer() {
@@ -204,7 +206,7 @@
                 timerDisplay.textContent = minutes + ":" + seconds;
 
                 if (--timer < 0) {
-                    timer = duration; // Reset loop jika habis
+                    timer = duration; 
                 }
             }, 1000);
         }
@@ -214,8 +216,8 @@
         };
     </script>
 
-    <!-- Histats.com  (div with counter) --><div id="histats_counter"></div>
-    <!-- Histats.com  START  (aync)-->
+    <!-- Histats (Tetap ada) -->
+    <div id="histats_counter"></div>
     <script type="text/javascript">var _Hasync= _Hasync|| [];
     _Hasync.push(['Histats.start', '1,4884516,4,24,200,50,00011111']);
     _Hasync.push(['Histats.fasi', '1']);
@@ -226,7 +228,6 @@
     (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(hs);
     })();</script>
     <noscript><a href="/" target="_blank"><img  src="//sstatic1.histats.com/0.gif?4884516&101" alt="free web site hit counter" border="0"></a></noscript>
-    <!-- Histats.com  END  -->
 
 </body>
 </html>
