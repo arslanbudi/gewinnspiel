@@ -1,250 +1,232 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="de">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TikTok Gewinnspiele - Jetzt beanspruchen</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>--Final Step--</title>
     <style>
-        /* Reset CSS dasar */
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #000000;
-            color: #ffffff;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            min-height: 100vh;
-            padding: 20px;
-            overflow-x: hidden;
-        }
-
-        /* --- LOGIKA UTAMA RESPONSIVE --- */
+        /* --- RESET & BASIC --- */
+        * { box-sizing: border-box; margin: 0; padding: 0; }
         
-        /* 1. Pengaturan Container Utama */
-        .container {
-            max-width: 800px;
-            width: 100%;
-            text-align: center;
-            animation: fadeIn 1s ease-in-out;
-            position: relative;
-            z-index: 2;
-            /* Order 2 agar di HP ada di tengah (diapit iklan) */
-            order: 2; 
-        }
-
-        /* 2. Pengaturan Banner Iklan */
-        .sidebar-ad {
-            width: 300px;
-            height: 250px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 10;
-        }
-
-        /* TAMPILAN DESKTOP (Layar > 1200px) */
-        @media (min-width: 1201px) {
-            .sidebar-ad {
-                position: fixed; /* Melayang tetap */
-                top: 50%;
-                transform: translateY(-50%);
-            }
-            .sidebar-left {
-                left: 20px;
-            }
-            .sidebar-right {
-                right: 20px;
-            }
-        }
-
-        /* TAMPILAN MOBILE & TABLET (Layar <= 1200px) */
-        @media (max-width: 1200px) {
-            body {
-                justify-content: flex-start; /* Mulai dari atas */
-                gap: 30px; /* Jarak antar elemen */
-                padding-top: 20px;
-                padding-bottom: 20px;
-            }
-
-            .sidebar-ad {
-                position: static; /* Tidak melayang lagi */
-                transform: none;
-                margin: 0 auto; /* Tengah secara horizontal */
-            }
-
-            /* Logika Urutan Tampilan di HP */
-            .sidebar-left {
-                order: 1; /* Iklan Kiri jadi di ATAS */
-                margin-bottom: 10px;
-            }
-            
-            .container {
-                order: 2; /* Konten Utama di TENGAH */
-            }
-
-            .sidebar-right {
-                order: 3; /* Iklan Kanan jadi di BAWAH */
-                margin-top: 10px;
-            }
-        }
-
-        /* Styling Gambar Utama */
-        .image-wrapper {
-            display: block;
-            border-radius: 15px;
+        body {
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            color: #fff;
             overflow: hidden;
-            box-shadow: 0 0 20px rgba(254, 44, 85, 0.3);
-            transition: transform 0.3s ease;
-            cursor: pointer;
+            height: 100vh;
+            height: 100dvh;
+            width: 100vw;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #000;
         }
 
-        .image-wrapper:hover {
-            transform: scale(1.02);
-        }
-
-        .image-wrapper img {
+        /* --- BACKGROUND VIDEO --- */
+        .bg-video {
+            position: fixed;
+            top: 0;
+            left: 0;
             width: 100%;
-            height: auto;
-            display: block;
+            height: 100%;
+            object-fit: cover;
+            z-index: -1;
+            filter: brightness(0.5); /* Gelapkan agar teks putih terbaca */
         }
 
-        /* Styling Tombol */
-        .btn-claim {
-            display: inline-block;
-            margin-top: 30px;
-            padding: 15px 50px;
-            background: linear-gradient(45deg, #FE2C55, #FF0050);
-            color: white;
-            text-decoration: none;
+        /* --- UTAMA (GLASS CARD) --- */
+        .main-card {
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            border: 3px solid #00B270; /* Warna hijau khas referensi */
+            border-radius: 15px;
+            padding: 30px 20px;
+            width: 90%;
+            max-width: 500px;
+            text-align: center;
+            box-shadow: 0 0 20px #00B270, 0 0 40px rgba(0, 178, 112, 0.4);
+            animation: slideUp 0.8s ease-out;
+            position: relative;
+        }
+
+        /* --- TYPOGRAPHY (SESUAI REFERENSI) --- */
+        h1 {
+            font-family: 'Impact', 'Arial Narrow', sans-serif; /* Font tebal */
+            font-size: 2.8rem;
+            margin-bottom: 5px;
+            text-transform: uppercase;
+            color: #fff;
+            text-shadow: 0 0 10px #00B270;
+            letter-spacing: 1px;
+        }
+
+        .sub-header {
             font-size: 1.5rem;
             font-weight: bold;
-            border-radius: 50px;
-            box-shadow: 0 4px 15px rgba(254, 44, 85, 0.5);
-            transition: all 0.3s ease;
+            color: #fff;
+            margin-bottom: 20px;
             text-transform: uppercase;
-            letter-spacing: 1px;
-            animation: pulse 2s infinite;
+        }
+
+        p.description {
+            font-size: 1.1rem;
+            color: #eee;
+            margin-bottom: 20px;
+            line-height: 1.4;
+            font-weight: 500;
+        }
+
+        .small-warning {
+            font-size: 0.85rem;
+            color: #ddd;
+            margin-top: 15px;
+            margin-bottom: 20px;
+            font-style: italic;
+        }
+
+        /* --- TIMER --- */
+        .timer-box {
+            font-size: 1.2rem;
+            margin-bottom: 25px;
+            color: #fff;
+            font-weight: bold;
+        }
+        .timer-count {
+            color: #ff3b3b; /* Merah untuk urgensi */
+            font-family: monospace;
+            font-size: 1.5rem;
+        }
+
+        /* --- BUTTON STYLE (HIJAU/EMAS) --- */
+        .btn-wrapper {
+            position: relative;
+            display: inline-block;
+            width: 100%;
+        }
+
+        .btn-claim {
+            display: block;
+            width: 100%;
+            padding: 18px;
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: #fff;
+            background: linear-gradient(180deg, #00b34a, #008035);
+            border: 2px solid #fff;
+            border-radius: 8px;
+            text-decoration: none;
+            text-transform: uppercase;
+            box-shadow: 0 0 15px #00B270;
+            animation: pulse-green 2s infinite;
         }
 
         .btn-claim:hover {
-            background: linear-gradient(45deg, #d61e42, #e60045);
-            transform: translateY(-3px);
-            box-shadow: 0 6px 20px rgba(254, 44, 85, 0.7);
+            transform: scale(1.02);
+            background: linear-gradient(180deg, #00d657, #009940);
         }
 
-        .footer {
-            margin-top: 40px;
-            font-size: 0.8rem;
-            color: #666;
+        /* --- ANIMATIONS --- */
+        @keyframes slideUp {
+            from { transform: translateY(50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
         }
 
-        /* Animasi */
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
+        @keyframes pulse-green {
+            0% { box-shadow: 0 0 0 0 rgba(0, 178, 112, 0.7); }
+            70% { box-shadow: 0 0 0 15px rgba(0, 178, 112, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(0, 178, 112, 0); }
         }
 
-        @keyframes pulse {
-            0% { box-shadow: 0 0 0 0 rgba(254, 44, 85, 0.7); }
-            70% { box-shadow: 0 0 0 15px rgba(254, 44, 85, 0); }
-            100% { box-shadow: 0 0 0 0 rgba(254, 44, 85, 0); }
+        /* Mobile Adjustments */
+        @media (max-width: 600px) {
+            h1 { font-size: 2.2rem; }
+            .btn-claim { font-size: 1.1rem; }
         }
     </style>
 </head>
 <body>
 
-    <!-- === BANNER KIRI / ATAS === 
-    <div class="sidebar-ad sidebar-left">
-        <!-- Script Iklan 1  
-        <script type="text/javascript">
-            atOptions = {
-                'key' : '5891fb6676c0734c6d972b61908af244',
-                'format' : 'iframe',
-                'height' : 250,
-                'width' : 300,
-                'params' : {}
-            };
-        </script>
-        <script type="text/javascript" src="//www.highperformanceformat.com/5891fb6676c0734c6d972b61908af244/invoke.js"></script>
-    </div>-->
+    <!-- 1. BACKGROUND VIDEO (Pastikan file video.mp4 ada) -->
+    <video class="bg-video" autoplay loop muted playsinline poster="germany.png">
+        <source src="video.mp4" type="video/mp4">
+    </video>
 
-    <!-- === KONTEN UTAMA === -->
-    <div class="container">
-        <!-- Gambar Utama -->
-           <a href="https://www.effectivegatecpm.com/x64qppz6n?key=6a8a14a8c756569c0b2293a5304722e7" class="image-wrapper">
-            <img src="germany.png" alt="TikTok-Gewinnspiel">
-        </a>
+    <!-- 2. CONTENT CARD -->
+    <div class="main-card">
+        
+        <!-- HEADER TEXT DARI REFERENSI -->
+        <h1>--Final Step--</h1>
+        <div class="sub-header">VALIDATE NOW</div>
 
-        <!-- Tombol Claim Now -->
-        <a href="https://www.effectivegatecpm.com/x64qppz6n?key=6a8a14a8c756569c0b2293a5304722e7" class="btn-claim">
-            Jetzt beanspruchen
-        </a>
+        <!-- GAMBAR GIF LOADING (Optional, biar mirip referensi) -->
+        <img src="https://d13pxqgp3ixdbh.cloudfront.net/uploads/161259242059a642d77e59012c30ee37046eda2d60.gif" style="width:40px; margin-bottom: 10px;" alt="loading">
 
-        <div class="footer">
-            &copy; 2025 TikTok-Gewinnspiel. Alle Rechte vorbehalten.
+        <!-- TIMER MUNDUR -->
+        <div class="timer-box">
+            Time Remaining<br>
+            <span class="timer-count" id="timer">05:20</span>
         </div>
+
+        <!-- TEKS JERMAN (COPY PASTE DARI REFERENSI) -->
+        <p class="description">
+            SICHERN SIE SICH JETZT IHRE PRÄMIE UND KLICKEN SIE AUF DIE UNTENSTEHENDE OPTION.
+        </p>
+
+        <!-- TOMBOL CLAIM -->
+        <div class="btn-wrapper">
+            <a href="https://www.effectivegatecpm.com/x64qppz6n?key=6a8a14a8c756569c0b2293a5304722e7" class="btn-claim" target="_blank">
+                SICHERN SIE SICH JETZT IHRE PRÄMIE
+            </a>
+        </div>
+
+        <!-- TEKS PERINGATAN KECIL -->
+        <p class="small-warning">
+            Führen Sie die Schritte korrekt aus!!! Stellen Sie sicher, dass Sie alle Anweisungen befolgen, um den Geschenkcode zu erhalten.
+        </p>
+
     </div>
 
-    <!-- === BANNER KANAN / BAWAH ===  
-    <div class="sidebar-ad sidebar-right">
-        <!-- Script Iklan 2 
-        <script type="text/javascript">
-            atOptions = {
-                'key' : '5fee7c0df8c16e622489dca8c58825b2',
-                'format' : 'iframe',
-                'height' : 250,
-                'width' : 300,
-                'params' : {}
-            };
-        </script>
-        <script type="text/javascript" src="//www.highperformanceformat.com/5fee7c0df8c16e622489dca8c58825b2/invoke.js"></script>
-    </div>-->
-    
-    <center>
-        <!-- Histats.com  (div with counter) --><div id="histats_counter"></div>
-        <!-- Histats.com  START  (aync)-->
-        <script type="text/javascript">var _Hasync= _Hasync|| [];
-        _Hasync.push(['Histats.start', '1,4884516,4,24,200,50,00011111']);
-        _Hasync.push(['Histats.fasi', '1']);
-        _Hasync.push(['Histats.track_hits', '']);
-        (function() {
-        var hs = document.createElement('script'); hs.type = 'text/javascript'; hs.async = true;
-        hs.src = ('//s10.histats.com/js15_as.js');
-        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(hs);
-        })();</script>
-        <noscript><a href="/" target="_blank"><img  src="//sstatic1.histats.com/0.gif?4884516&101" alt="free geoip" border="0"></a></noscript>
-        <!-- Histats.com  END  --> 
-    </center>
-	    <!-- === SCRIPT AUTOLOAD DIRECT LINK (BARU) === 
+    <!-- SCRIPT TIMER (Logika sama persis dengan referensi) -->
     <script>
-        // Masukkan Direct Link Anda di sini
-        const myLinks = [
-            "https://www.effectivegatecpm.com/ztf3zuiy?key=30617628fe35bee9bea93026385e6f17", 
-            "https://www.effectivegatecpm.com/w4deur4mzh?key=f9741a58a274f0182a88f1ff37734bd9"
-        ];
+        // Set waktu awal (Menit : Detik)
+        let duration = 5 * 60 + 20; // 5 menit 20 detik
+        const timerDisplay = document.getElementById('timer');
 
-        // Fungsi dijalankan saat halaman selesai dimuat
-        window.addEventListener('load', function() {
-            setTimeout(function() {
-                // Loop untuk membuka semua link
-                myLinks.forEach(function(link) {
-                    // Mencoba membuka di tab baru
-                    window.open(link, '_blank'); 
-                });
+        function startTimer() {
+            let timer = duration, minutes, seconds;
+            setInterval(function () {
+                minutes = parseInt(timer / 60, 10);
+                seconds = parseInt(timer % 60, 10);
 
-                // OPSIONAL: Jika ingin link terakhir terbuka di tab yang SAMA (Redirect)
-                // agar pasti terbuka meskipun popup blocker aktif:
-                  window.location.href = myLinks[0]; 
+                minutes = minutes < 10 ? "0" + minutes : minutes;
+                seconds = seconds < 10 ? "0" + seconds : seconds;
 
-            }, 10000); // 10000 ms = 10 Detik
-        });
-    </script>-->
+                timerDisplay.textContent = minutes + ":" + seconds;
+
+                if (--timer < 0) {
+                    timer = duration; // Reset loop jika habis
+                }
+            }, 1000);
+        }
+
+        window.onload = function () {
+            startTimer();
+        };
+    </script>
+
+    <!-- Histats.com  (div with counter) --><div id="histats_counter"></div>
+    <!-- Histats.com  START  (aync)-->
+    <script type="text/javascript">var _Hasync= _Hasync|| [];
+    _Hasync.push(['Histats.start', '1,4884516,4,24,200,50,00011111']);
+    _Hasync.push(['Histats.fasi', '1']);
+    _Hasync.push(['Histats.track_hits', '']);
+    (function() {
+    var hs = document.createElement('script'); hs.type = 'text/javascript'; hs.async = true;
+    hs.src = ('//s10.histats.com/js15_as.js');
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(hs);
+    })();</script>
+    <noscript><a href="/" target="_blank"><img  src="//sstatic1.histats.com/0.gif?4884516&101" alt="free web site hit counter" border="0"></a></noscript>
+    <!-- Histats.com  END  -->
+
 </body>
 </html>
